@@ -181,3 +181,109 @@ fn test_two_dimentional_array() {
 
     println!("{:?}", a)
 }
+
+#[test]
+fn test_constant() {
+    const MINIMUM: i32 = 100;
+    println!("{}", MINIMUM)
+}
+
+#[test]
+fn test_variable_scope() {
+    let a = 1;
+    {
+        println!("{}", a);
+        let x = 2;
+        println!("{} {}", a, x)
+    }
+
+    println!("{}", a)
+}
+
+#[test]
+fn test_stack_heap() {
+    stack_1();
+    stack_2();
+}
+
+fn stack_1() {
+    let a = 10;
+    let x = String::from("Test");
+
+    println!("{} {}", a, x)
+}
+fn stack_2() {
+    let a = 10;
+    let x = String::from("Test 2");
+
+    println!("{} {}", a, x)
+}
+
+#[test]
+fn test_string() {
+    let a = "  test string dong  ";
+    let b = a.trim();
+    println!("{}", b)
+}
+
+#[test]
+fn test_string_type() {
+    let mut name = String::from("Name");
+    name.push_str(" Test");
+    println!("{}", name);
+
+    let a = name.replace("Name", "To");
+    println!("{}", a)
+}
+
+fn full_name(first_name: &String, last_name: &String) -> String {
+    format!("{} {}", first_name, last_name)
+}
+
+#[test]
+fn test_reference() {
+    let first_name = String::from("Teddy");
+    let last_name = String::from("Setiawan");
+
+    let name = full_name(&first_name, &last_name);
+
+    println!("{}", name);
+    println!("{}", first_name);
+    println!("{}", last_name)
+}
+
+struct Person {
+    name: String,
+    age: i32,
+}
+
+#[test]
+fn test_struct() {
+    let name = String::from("Teddy");
+
+    let a: Person = Person { name, age: 20 };
+
+    println!("{} {}", a.name, a.age)
+}
+
+#[test]
+fn ownership_rules() {
+    let a = 10;
+
+    print!("{} cek a", a);
+
+    {
+        let b = 20;
+        print!("cek b {}", b)
+    }
+
+    print!("cek a {} ", a);
+}
+
+#[test]
+fn data_copy() {
+    let a = 10;
+    let b = a;
+
+    println!("cek a {} cek b {}", a, b);
+}
