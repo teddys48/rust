@@ -287,3 +287,19 @@ fn data_copy() {
 
     println!("cek a {} cek b {}", a, b);
 }
+
+#[test]
+fn data_movement() {
+    let a = String::from("test");
+    let b = a;
+
+    println!("cek data {}", b)
+}
+
+#[test]
+fn data_clone() {
+    let a = String::from("test");
+    let b = a.clone();
+    
+    println!("cek data a {} cek data b {}", a, b)
+}
