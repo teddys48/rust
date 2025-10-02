@@ -300,6 +300,54 @@ fn data_movement() {
 fn data_clone() {
     let a = String::from("test");
     let b = a.clone();
-    
+
     println!("cek data a {} cek data b {}", a, b)
+}
+
+// If Expression
+#[test]
+fn if_expression() {
+    let value = 10;
+    if value > 11 {
+        println!("hello")
+    } else {
+        println!("world")
+    }
+
+    let result = if value >= 8 {
+        "great"
+    } else if value >= 6 {
+        "good"
+    } else if value >= 3 {
+        "not bad"
+    } else {
+        "bad"
+    };
+
+    println!("result is {}", result)
+}
+
+// Loop
+#[test]
+fn loop_expression() {
+    let mut counter = 0;
+    loop {
+        counter += 1;
+        if counter >= 10 {
+            break;
+        } else {
+            continue;
+        }
+    }
+
+    let mut counter2 = 0;
+    let result = loop {
+        counter2 += 1;
+        if counter2 >= 10 {
+            break counter2 * 2
+        }
+    };
+
+    println!("result is {}", counter);
+    println!("result2 is {}", result)
 }
