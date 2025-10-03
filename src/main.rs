@@ -1,3 +1,5 @@
+use std::array;
+
 fn main() {
     println!("Hello, world!");
     println!("Hello teddy!")
@@ -344,10 +346,113 @@ fn loop_expression() {
     let result = loop {
         counter2 += 1;
         if counter2 >= 10 {
-            break counter2 * 2
+            break counter2 * 2;
         }
     };
 
     println!("result is {}", counter);
     println!("result2 is {}", result)
+}
+
+#[test]
+fn range() {
+    let array: [&str; 5] = ["A", "B", "C", "D", "E"];
+
+    let range = 0..5;
+    println!("Start: {}", range.start);
+    println!("End: {}", range.end);
+
+    for i in range {
+        println!("Value {}", array[i])
+    }
+
+    for x in 0..5 {
+        println!("Value {}", array[x])
+    }
+}
+
+#[test]
+fn range_inclusive() {
+    let array: [&str; 5] = ["A", "B", "C", "D", "E"];
+
+    let range = 0..=4;
+    println!("Start: {}", range.start());
+    println!("End: {}", range.end());
+
+    for i in range {
+        println!("Value {}", array[i])
+    }
+
+    for x in 0..5 {
+        println!("Value {}", array[x])
+    }
+}
+
+fn say_hello() {
+    println!("Hello")
+}
+
+#[test]
+fn test_say_hello() {
+    say_hello();
+}
+
+fn say_goodbye(first_name: &str, last_name: &str) {
+    println!("Goodbye {} {}", first_name, last_name)
+}
+
+#[test]
+fn test_say_goodbye() {
+    say_goodbye("Budi", "Pekerti");
+}
+
+fn factorial_loop(n: i32) -> i32 {
+    if n < 1 {
+        return 0;
+    }
+
+    let mut result = 1;
+    for i in 1..=n {
+        result *= i
+    }
+
+    result
+}
+
+#[test]
+fn test_factorial_loop() {
+    let result = factorial_loop(4);
+    println!("value {}", result);
+
+    let result = factorial_loop(-10);
+    println!("value {}", result);
+}
+
+fn print_text(value: String, time: u32) {
+    if time == 0 {
+        return;
+    } else {
+        println!("{}", value)
+    }
+
+    print_text(value, time - 1);
+}
+
+#[test]
+fn test_recursive_text() {
+    print_text(String::from("Budi"), 3);
+}
+
+fn factorial_recursive(n: u32) -> u32 {
+    if n == 1 {
+        return 1;
+    }
+
+    n * factorial_recursive(n - 1)
+}
+
+#[test]
+fn test_recursive_factorial() {
+    let res = factorial_recursive(4);
+    println!("Value {}", res)
 }
